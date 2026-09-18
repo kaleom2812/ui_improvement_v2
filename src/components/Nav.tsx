@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import { List, X, ArrowUpRight, CaretRight, ShieldCheck } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { PaletteToggle } from "./PaletteToggle";
 import { AccountMenu } from "./AccountMenu";
 import { DropdownNavigation } from "./ui/dropdown-navigation";
 import { nav } from "@/data/site";
@@ -58,6 +59,7 @@ export function Nav() {
           </nav>
 
           <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex">
+            <PaletteToggle />
             <ThemeToggle />
             {account ? (
               <>
@@ -79,6 +81,7 @@ export function Nav() {
           </div>
 
           <div className="ml-auto flex shrink-0 items-center gap-2 lg:hidden">
+            <PaletteToggle />
             <ThemeToggle />
             {account && <AccountMenu />}
             <button

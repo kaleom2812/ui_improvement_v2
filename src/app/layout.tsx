@@ -3,6 +3,7 @@ import { Poppins, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { AuditFlowProvider } from "@/state/audit-flow";
 import { ThemeProvider } from "@/lib/theme";
+import { PaletteProvider } from "@/lib/palette";
 import { AppShell } from "@/components/AppShell";
 
 // CSS variable names kept as --font-geist-* for continuity with existing
@@ -35,6 +36,8 @@ const fontSerif = Poppins({
 // Applies the persisted theme class to <html> before first paint (no flash).
 // The value is written by src/lib/theme.tsx via usePersistentState (JSON-encoded).
 const themeScript = `(function(){try{var t=localStorage.getItem('phazeai:theme');if(t){t=t.replace(/^"|"$/g,'');if(t==='dark')document.documentElement.classList.add('dark');}}catch(e){}})();`;
+// Same pre-paint pattern for the palette class — see src/lib/palette.tsx.
+const paletteScript = `(function(){try{var p=localStorage.getItem('phazeai:palette');if(p){p=p.replace(/^"|"$/g,'');if(p==='blue')document.documentElement.classList.add('theme-blue');}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: "GEO Tool — Generative Engine Optimization",
@@ -47,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${fontSans.variable} ${fontMono.variable} ${fontSerif.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: paletteScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -70,9 +74,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
-          <AuditFlowProvider>
-            <AppShell>{children}</AppShell>
-          </AuditFlowProvider>
+          <PaletteProvider>
+            <AuditFlowProvider>
+              <AppShell>{children}</AppShell>
+            </AuditFlowProvider>
+          </PaletteProvider>
         </ThemeProvider>
       </body>
     </html>

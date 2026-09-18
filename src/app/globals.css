@@ -7,8 +7,12 @@
    Grey neutrals + a pink brand accent, sharp corners throughout (see
    tailwind.config.ts `borderRadius`, flattened to 0 at every step).
 
-   Light theme by default. `.dark` on <html> (set by src/lib/theme.tsx plus the
-   pre-paint script in src/app/layout.tsx) swaps the token values.
+   Two independent toggles compose on <html>:
+     - `.dark`       (src/lib/theme.tsx)   — light vs dark
+     - `.theme-blue` (src/lib/palette.tsx) — pink palette (default) vs the
+                                              off-white/blue palette below
+   Both are also applied by pre-paint scripts in src/app/layout.tsx so the
+   right combination is on <html> before first paint (no flash).
 
    Token *values* live here as space-separated RGB channels so both Tailwind
    (via tailwind.config.ts `token()`) and non-Tailwind consumers (the hand-built
@@ -82,6 +86,73 @@
 
     --scrollbar-track: 36 32 36;
     --scrollbar-thumb: 72 65 72;
+  }
+
+  :root.theme-blue {
+    color-scheme: light;
+
+    /* Off-white canvas + a blue accent — the second palette, toggled via
+       PaletteToggle (src/components/PaletteToggle.tsx). */
+    --c-canvas: 248 249 251;
+    --c-surface: 255 255 255;
+    --c-subtle: 241 244 248;
+    --c-ink: 15 23 42;
+    --c-ink-2: 71 85 105;
+    --c-ink-3: 148 163 184;
+    --c-line: 226 232 240;
+    --c-line-2: 203 213 225;
+    --c-brand: 37 99 235;
+    --c-brand-dark: 29 78 216;
+    --c-brand-soft: 219 234 254;
+    --c-brand-ink: 30 64 175;
+    --c-brand-dim: 147 197 253;
+    --c-pos: 21 128 61;
+    --c-pos-soft: 220 245 230;
+    --c-warn: 180 83 9;
+    --c-warn-soft: 254 235 213;
+    --c-neg: 185 28 28;
+    --c-neg-soft: 254 226 226;
+
+    --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 12px 28px -14px rgba(15, 23, 42, 0.12);
+    --shadow-pop: 0 20px 48px -14px rgba(15, 23, 42, 0.2);
+    --shadow-glass: 0 1px 2px rgba(15, 23, 42, 0.05), 0 24px 48px -20px rgba(37, 99, 235, 0.28),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+
+    --scrollbar-track: 241 244 248;
+    --scrollbar-thumb: 203 213 225;
+  }
+
+  :root.theme-blue.dark {
+    color-scheme: dark;
+
+    /* Deep navy canvas + a brighter blue for contrast. */
+    --c-canvas: 9 14 24;
+    --c-surface: 15 23 38;
+    --c-subtle: 20 29 47;
+    --c-ink: 241 245 249;
+    --c-ink-2: 203 213 225;
+    --c-ink-3: 148 163 184;
+    --c-line: 30 41 59;
+    --c-line-2: 51 65 85;
+    --c-brand: 96 165 250;
+    --c-brand-dark: 147 197 253;
+    --c-brand-soft: 23 37 61;
+    --c-brand-ink: 147 197 253;
+    --c-brand-dim: 51 88 143;
+    --c-pos: 74 222 128;
+    --c-pos-soft: 20 40 28;
+    --c-warn: 251 146 60;
+    --c-warn-soft: 42 28 16;
+    --c-neg: 248 113 113;
+    --c-neg-soft: 42 20 20;
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 20px 48px -14px rgba(0, 0, 0, 0.7);
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -20px rgba(96, 165, 250, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+    --scrollbar-track: 20 29 47;
+    --scrollbar-thumb: 51 65 85;
   }
 
   html {

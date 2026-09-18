@@ -4,6 +4,7 @@ import React, { forwardRef, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { usePalette } from "@/lib/palette";
 
 const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
   ({ className, children }, ref) => {
@@ -32,7 +33,11 @@ export function IntegrationsBeam({ className }: { className?: string }) {
   const div6Ref = useRef<HTMLDivElement>(null);
   const div7Ref = useRef<HTMLDivElement>(null);
 
-  const beamProps = { gradientStartColor: "#DB2777", gradientStopColor: "#F472B6" };
+  const { palette } = usePalette();
+  const beamProps =
+    palette === "blue"
+      ? { gradientStartColor: "#2563EB", gradientStopColor: "#60A5FA" }
+      : { gradientStartColor: "#DB2777", gradientStopColor: "#F472B6" };
 
   return (
     <div
