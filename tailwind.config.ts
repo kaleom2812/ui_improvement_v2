@@ -11,7 +11,12 @@ import type { Config } from "tailwindcss";
  *
  * Font families resolve to the CSS variables injected by `next/font` in
  * `src/app/layout.tsx`. The variable names are kept as `--font-geist-*` for
- * continuity with existing consumers; the faces are now Inter / IBM Plex Mono.
+ * continuity with existing consumers; the sans/serif faces are both Poppins,
+ * body copy numerics stay on IBM Plex Mono.
+ *
+ * borderRadius is flat everywhere (sharp-corner theme) — every step of the
+ * scale, including `full`, resolves to 0 so `rounded-full` pill buttons and
+ * icon chips render as squares instead of pills/circles.
  */
 const token = (name: string) => `rgb(var(--c-${name}) / <alpha-value>)`;
 
@@ -21,14 +26,14 @@ const config: Config = {
   theme: {
     borderRadius: {
       none: "0",
-      sm: "8px",
-      DEFAULT: "12px",
-      md: "10px",
-      lg: "16px",
-      xl: "22px",
-      "2xl": "26px",
-      "3xl": "32px",
-      full: "9999px",
+      sm: "0",
+      DEFAULT: "0",
+      md: "0",
+      lg: "0",
+      xl: "0",
+      "2xl": "0",
+      "3xl": "0",
+      full: "0",
     },
     extend: {
       colors: {
@@ -66,8 +71,8 @@ const config: Config = {
         sans: ["var(--font-geist-sans)", '"Inter"', "system-ui", "-apple-system", "sans-serif"],
         display: ["var(--font-geist-sans)", '"Inter"', "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", '"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
-        // Editorial serif used sparingly for italic emphasis inside headings.
-        serif: ["var(--font-serif)", '"Fraunces"', "ui-serif", "Georgia", "serif"],
+        // Italic emphasis inside headings — Poppins Italic, same family as `sans`.
+        serif: ["var(--font-serif)", '"Poppins"', "system-ui", "sans-serif"],
       },
       fontSize: {
         "2xs": ["0.6875rem", { lineHeight: "1rem", letterSpacing: "0.02em" }],
@@ -83,6 +88,7 @@ const config: Config = {
       boxShadow: {
         card: "var(--shadow-card)",
         pop: "var(--shadow-pop)",
+        glass: "var(--shadow-glass)",
         cta: "0 8px 24px -8px rgb(var(--c-brand) / 0.5)",
         focus: "0 0 0 4px rgb(var(--c-brand) / 0.22)",
       },

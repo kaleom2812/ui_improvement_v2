@@ -17,12 +17,12 @@ import { socialProof, pricing } from "@/data/site";
 import { sampleAiPresence, sampleBenchmark, sampleShareOfVoice } from "@/data/sample-report";
 import { BarList, DonutChart } from "@/components/charts";
 import { Reveal, SectionHeading, Badge, Disclose } from "@/components/primitives";
-import { AmbientMetricCards } from "@/components/marketing/AmbientMetricCards";
-import { DashboardPreview } from "@/components/marketing/DashboardPreview";
 import { MockupFrame } from "@/components/marketing/MockupFrame";
 import { RecommendedActionsPanel } from "@/components/marketing/RecommendedActionsPanel";
 import { ImpactStack } from "@/components/marketing/ImpactStack";
-import { AnalyticsSection } from "@/components/marketing/AnalyticsSection";
+import { LogoWall } from "@/components/marketing/LogoWall";
+import { AnalyticsShowcase } from "@/components/marketing/AnalyticsShowcase";
+import { IntegrationsBeam } from "@/components/marketing/IntegrationsBeam";
 import { PricingCta } from "@/components/PricingCta";
 import { money, pct } from "@/lib/format";
 
@@ -66,8 +66,7 @@ export default function HomePage() {
     <MarketingShell>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-brand-soft/50 to-canvas">
-        <AmbientMetricCards />
-        <div className="site-container relative z-10 py-20 text-center sm:py-24">
+        <div className="site-container relative z-10 pt-20 pb-32 text-center sm:pt-24 sm:pb-40">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-surface px-3 py-1 text-2xs font-bold uppercase tracking-[0.08em] text-brand-ink">
             <Sparkle size={12} weight="fill" /> Free GEO audit · about a minute
           </span>
@@ -89,25 +88,16 @@ export default function HomePage() {
             </span>
           </div>
         </div>
-        <div className="site-container relative z-10 mt-14 pb-20 sm:mt-16 sm:pb-24">
-          <DashboardPreview />
-        </div>
       </section>
 
-      {/* Logos */}
-      <section className="border-b border-line">
-        <div className="site-container flex flex-wrap items-center justify-center gap-x-10 gap-y-4 py-8">
-          <p className="text-2xs uppercase tracking-[0.1em] text-ink-3">Teams tracking their AI visibility</p>
-          {socialProof.logos.map((l) => (
-            <span key={l} className="text-sm font-semibold text-ink-3">
-              {l}
-            </span>
-          ))}
-        </div>
-      </section>
+      {/* Logo wall */}
+      <LogoWall />
+
+      {/* Live analytics showcase */}
+      <AnalyticsShowcase />
 
       {/* Why it matters */}
-      <section className="site-container py-16 sm:py-20">
+      <section className="site-container py-32 sm:py-40">
         <SectionHeading
           eyebrow="Why this matters"
           title="AI answers are becoming the shortlist"
@@ -129,12 +119,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Live analytics showcase */}
-      <AnalyticsSection />
+      {/* Integrations beam */}
+      <section className="site-container pb-32 sm:pb-40">
+        <SectionHeading
+          eyebrow="How it works"
+          title="Every source feeds the same AI answer"
+          lede="Docs, chat threads and workspace tools all become training and retrieval signal — GEO Tool tracks what the model does with it before it reaches your buyer."
+          align="center"
+          className="mx-auto"
+        />
+        <Reveal className="mt-10">
+          <IntegrationsBeam />
+        </Reveal>
+      </section>
 
       {/* Product story: 01 Understand -> 02 Improve -> 03 Measure */}
       <section className="border-y border-line bg-subtle/40">
-        <div className="site-container space-y-20 py-16 sm:space-y-28 sm:py-20">
+        <div className="site-container space-y-20 py-32 sm:space-y-28 sm:py-40">
           {/* 01 — Understand */}
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
@@ -161,9 +162,9 @@ export default function HomePage() {
                 Run your free audit <ArrowRight size={15} weight="bold" />
               </Link>
             </div>
-            <Reveal>
+            <Reveal className="mx-auto max-w-md lg:mx-0 lg:ml-auto">
               <MockupFrame label="AI visibility — by model">
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="grid gap-6">
                   <BarList items={sampleBenchmark} max={100} labelWidth="6.5rem" />
                   <DonutChart items={sampleShareOfVoice} centerLabel={{ value: "9%", label: "Example brand" }} />
                 </div>
@@ -221,7 +222,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 sm:py-20">
+      <section className="py-32 sm:py-40">
         <div className="site-container">
           <SectionHeading eyebrow="Social proof" title="Teams use GEO Tool to make the case internally" />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -246,7 +247,7 @@ export default function HomePage() {
 
       {/* Pricing preview */}
       <section className="border-y border-line bg-subtle/40">
-        <div className="site-container py-16 sm:py-20">
+        <div className="site-container py-32 sm:py-40">
           <SectionHeading eyebrow="Pricing" title="Start free. Upgrade when you need the plan." align="center" className="mx-auto" />
           <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
             {pricing.plans.map((p) => (
@@ -275,7 +276,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 sm:py-20">
+      <section className="py-32 sm:py-40">
         <div className="site-container">
           <SectionHeading eyebrow="FAQ" title="Common questions" align="center" className="mx-auto" />
           <div className="mx-auto mt-8 max-w-2xl space-y-3">
@@ -295,7 +296,7 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section className="border-t border-line bg-gradient-to-b from-canvas to-brand-soft/50">
-        <div className="site-container py-16 text-center sm:py-20">
+        <div className="site-container py-32 text-center sm:py-40">
           <Gauge size={28} weight="bold" className="mx-auto text-brand-ink" />
           <h2 className="mx-auto mt-4 max-w-xl text-2xl font-bold tracking-tight text-ink sm:text-3xl">
             Find out what AI says about <em className="font-serif italic text-brand-ink">your</em> brand

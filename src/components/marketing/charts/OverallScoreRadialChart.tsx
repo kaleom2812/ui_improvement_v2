@@ -41,7 +41,7 @@ export function OverallScoreRadialChart() {
                 }}
               />
             </PolarRadiusAxis>
-            <RadialBar dataKey="value" background cornerRadius={999} />
+            <RadialBar dataKey="value" background cornerRadius={0} />
           </RadialBarChart>
         </ChartContainer>
       </CardContent>

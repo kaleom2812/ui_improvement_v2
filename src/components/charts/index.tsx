@@ -90,7 +90,7 @@ export function ScoreDial({
         : `${label}: ${formatScoreValue(value)} out of ${max}${grade ? `, grade ${grade}` : ""}`}
     >
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full" aria-hidden="true">
-        <path d={arcPath(1)} fill="none" stroke={C.line} strokeWidth={stroke} strokeLinecap="round" />
+        <path d={arcPath(1)} fill="none" stroke={C.line} strokeWidth={stroke} strokeLinecap="butt" />
         {Array.from({ length: 11 }).map((_, i) => {
           const a = start + (sweep * i) / 10;
           const [xa, ya] = polar(a, r - stroke / 2 - 3);
@@ -102,7 +102,7 @@ export function ScoreDial({
           fill="none"
           stroke={col}
           strokeWidth={stroke}
-          strokeLinecap="round"
+          strokeLinecap="butt"
           pathLength={1}
           strokeDasharray="1 1"
           style={{
@@ -263,8 +263,8 @@ export function LineTrend({
               stroke={s.color || (si === 0 ? C.brand : C.mut)}
               strokeWidth={si === 0 ? 2.2 : 1.5}
               strokeDasharray={s.dashed ? "4 4" : "1"}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap="butt"
+              strokeLinejoin="miter"
               pathLength={1}
               style={{
                 strokeDashoffset: on ? 0 : 1,
@@ -465,7 +465,7 @@ export function DonutChart({
             >
               <span
                 aria-hidden="true"
-                className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
+                className="h-2.5 w-2.5 shrink-0"
                 style={{ background: d.self ? "rgb(var(--c-brand))" : palette[i % palette.length], outline: d.self ? "1px solid rgb(var(--c-ink))" : "none" }}
               />
               <span className={`flex-1 ${d.self ? "font-semibold text-brand-dark" : "text-ink-2"}`}>{d.name}</span>
@@ -588,7 +588,7 @@ export function SegmentBar({ groups }: { groups: Array<{ label: string; count: n
       <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm">
         {groups.map((g) => (
           <li key={g.label} className="flex items-center gap-2">
-            <span aria-hidden="true" className="h-2.5 w-2.5 rounded-[3px]" style={{ background: colr[g.tone] }} />
+            <span aria-hidden="true" className="h-2.5 w-2.5" style={{ background: colr[g.tone] }} />
             <span className="text-ink-2">
               {g.label} <span className="data-fig text-ink">{g.count}</span>
               <span className="text-ink-3"> / {total}</span>
@@ -649,13 +649,13 @@ export function Gauge({ value, size = 190, unit = "%" }: { value: number; size?:
   return (
     <figure ref={ref} className="relative mx-auto" style={{ width: size, height: size * 0.62 }} role="img" aria-label={`${value}${unit}`}>
       <svg width={size} height={size * 0.62} viewBox="0 0 200 124">
-        <path d="M 16 116 A 84 84 0 0 1 184 116" stroke={C.line} strokeWidth="16" fill="none" strokeLinecap="round" />
+        <path d="M 16 116 A 84 84 0 0 1 184 116" stroke={C.line} strokeWidth="16" fill="none" strokeLinecap="butt" />
         <path
           d="M 16 116 A 84 84 0 0 1 184 116"
           stroke="url(#gaugeGrad)"
           strokeWidth="16"
           fill="none"
-          strokeLinecap="round"
+          strokeLinecap="butt"
           pathLength={1}
           strokeDasharray="1 1"
           style={{ strokeDashoffset: on ? 1 - v / 100 : 1, transition: reduced ? "none" : `stroke-dashoffset 1s ${EASE}` }}

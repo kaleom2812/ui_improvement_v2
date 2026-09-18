@@ -63,7 +63,20 @@ export const nav = [
 ] as const;
 
 export const socialProof = {
-  logos: ["Northwind", "Halcyon Labs", "Meridian Retail", "Foundry Health", "Cedar & Vine", "Atlas Freight"],
+  logos: [
+    "Northwind",
+    "Halcyon Labs",
+    "Meridian Retail",
+    "Foundry Health",
+    "Cedar & Vine",
+    "Atlas Freight",
+    "Lumen Analytics",
+    "Solaris Finance",
+    "Pinecrest Media",
+    "Brightline Health",
+    "Wavecrest Retail",
+    "Granite Peak Partners",
+  ],
   stat: { value: "2,400+", label: "domains audited on phazeAi" },
   testimonials: [
     {

@@ -1,11 +1,16 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Liquid-glass chart card: a translucent, blurred surface with a pink tint
+ * and a soft pink-glow shadow — designed to sit over the blurred brand blobs
+ * in AnalyticsShowcase's background so the backdrop-blur reads as glass.
+ */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-line bg-surface text-ink shadow-card transition-shadow duration-300 hover:shadow-pop",
+        "border border-brand/20 bg-gradient-to-br from-surface/75 via-surface/55 to-brand-soft/35 text-ink shadow-glass backdrop-blur-xl transition-[box-shadow,border-color] duration-300 hover:border-brand/35 hover:shadow-pop",
         className
       )}
       {...props}

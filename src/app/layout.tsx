@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Poppins, IBM_Plex_Mono, Fraunces } from "next/font/google";
+import { Poppins, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { AuditFlowProvider } from "@/state/audit-flow";
 import { ThemeProvider } from "@/lib/theme";
 import { AppShell } from "@/components/AppShell";
 
 // CSS variable names kept as --font-geist-* for continuity with existing
-// consumers (tailwind.config.ts, the chart inline styles); the sans face is
-// Poppins (geometric, sharper at display sizes for the marketing site).
+// consumers (tailwind.config.ts, the chart inline styles); Poppins is the
+// only display/body face used across the app.
 const fontSans = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -20,9 +20,11 @@ const fontMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
   display: "swap",
 });
-// Editorial serif — used only for italicised emphasis words inside headings
-// (see tailwind.config.ts `fontFamily.serif`), never for full body copy.
-const fontSerif = Fraunces({
+// Italicised emphasis words inside headings (see tailwind.config.ts
+// `fontFamily.serif`) used to be set in Fraunces; this is Poppins Italic
+// under the same --font-serif variable so every `font-serif italic` call
+// site keeps working without edits, now rendering in Poppins.
+const fontSerif = Poppins({
   subsets: ["latin"],
   style: ["italic", "normal"],
   weight: ["400", "500", "600"],

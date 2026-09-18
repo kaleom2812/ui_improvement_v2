@@ -67,7 +67,7 @@ export function MentionsBarChart() {
                 />
               }
             />
-            <Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} radius={[4, 4, 0, 0]} />
+            <Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} radius={0} />
           </BarChart>
         </ChartContainer>
       </CardContent>

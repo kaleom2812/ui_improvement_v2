@@ -47,7 +47,7 @@ export function Nav() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-brand/20 bg-gradient-to-br from-surface/80 via-surface/60 to-brand-soft/40 shadow-glass backdrop-blur-xl">
         <div className="site-container flex h-16 items-center gap-4">
           <div className="shrink-0">
             <Logo />

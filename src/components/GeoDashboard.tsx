@@ -80,7 +80,7 @@ function ScoreRingMini({ value, size = 38 }: { value: number; size?: number }) {
         fill="none"
         stroke="rgb(var(--c-brand))"
         strokeWidth={4}
-        strokeLinecap="round"
+        strokeLinecap="butt"
         strokeDasharray={`${Math.round(frac * c * 1000) / 1000} ${Math.round(c * 1000) / 1000}`}
       />
     </svg>

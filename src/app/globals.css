@@ -4,8 +4,8 @@
 
 /* ==========================================================================
    GEO Tool — design system
-   Visual language migrated from the GEO-UI-Version-4 reference, implemented on
-   the production Next.js + Tailwind stack.
+   Grey neutrals + a pink brand accent, sharp corners throughout (see
+   tailwind.config.ts `borderRadius`, flattened to 0 at every step).
 
    Light theme by default. `.dark` on <html> (set by src/lib/theme.tsx plus the
    pre-paint script in src/app/layout.tsx) swaps the token values.
@@ -19,64 +19,69 @@
   :root {
     color-scheme: light;
 
-    /* Salt (warm cream) canvas + amber accent — see tailwind.config.ts for how
+    /* Cool grey canvas + rose/pink accent — see tailwind.config.ts for how
        these RGB triples become Tailwind color utilities. */
-    --c-canvas: 250 247 241;
-    --c-surface: 255 254 251;
-    --c-subtle: 244 238 227;
-    --c-ink: 30 25 20;
-    --c-ink-2: 96 87 76;
-    --c-ink-3: 150 139 124;
-    --c-line: 232 223 207;
-    --c-line-2: 213 199 176;
-    --c-brand: 189 111 15;
-    --c-brand-dark: 152 87 10;
-    --c-brand-soft: 250 234 206;
-    --c-brand-ink: 120 71 10;
-    --c-brand-dim: 224 187 137;
-    --c-pos: 59 122 84;
-    --c-pos-soft: 226 238 227;
-    --c-warn: 176 62 26;
-    --c-warn-soft: 250 229 217;
-    --c-neg: 176 48 42;
-    --c-neg-soft: 250 228 224;
+    --c-canvas: 250 249 250;
+    --c-surface: 255 255 255;
+    --c-subtle: 243 241 243;
+    --c-ink: 26 23 26;
+    --c-ink-2: 90 84 90;
+    --c-ink-3: 140 133 140;
+    --c-line: 228 224 228;
+    --c-line-2: 208 202 208;
+    --c-brand: 219 39 119;
+    --c-brand-dark: 190 24 93;
+    --c-brand-soft: 252 231 243;
+    --c-brand-ink: 157 23 77;
+    --c-brand-dim: 244 175 208;
+    --c-pos: 21 128 61;
+    --c-pos-soft: 220 245 230;
+    --c-warn: 180 83 9;
+    --c-warn-soft: 254 235 213;
+    --c-neg: 185 28 28;
+    --c-neg-soft: 254 226 226;
 
-    --shadow-card: 0 1px 2px rgba(41, 30, 15, 0.05), 0 12px 28px -14px rgba(41, 30, 15, 0.14);
-    --shadow-pop: 0 20px 48px -14px rgba(41, 30, 15, 0.26);
+    --shadow-card: 0 1px 2px rgba(20, 18, 20, 0.06), 0 12px 28px -14px rgba(20, 18, 20, 0.14);
+    --shadow-pop: 0 20px 48px -14px rgba(20, 18, 20, 0.24);
+    /* Liquid-glass chart cards: depth + a soft pink halo + a hairline top sheen. */
+    --shadow-glass: 0 1px 2px rgba(20, 18, 20, 0.05), 0 24px 48px -20px rgba(219, 39, 119, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
 
-    --scrollbar-track: 244 238 227;
-    --scrollbar-thumb: 213 199 176;
+    --scrollbar-track: 243 241 243;
+    --scrollbar-thumb: 208 202 208;
   }
 
   :root.dark {
     color-scheme: dark;
 
-    /* Deep warm charcoal canvas + brighter amber for contrast. */
-    --c-canvas: 20 17 14;
-    --c-surface: 30 25 21;
-    --c-subtle: 38 32 26;
-    --c-ink: 240 234 224;
-    --c-ink-2: 196 185 170;
-    --c-ink-3: 140 129 114;
-    --c-line: 55 46 38;
-    --c-line-2: 74 63 52;
-    --c-brand: 224 155 56;
-    --c-brand-dark: 244 189 112;
-    --c-brand-soft: 58 42 22;
-    --c-brand-ink: 245 199 130;
-    --c-brand-dim: 118 89 52;
-    --c-pos: 100 191 146;
-    --c-pos-soft: 24 40 31;
-    --c-warn: 222 118 70;
-    --c-warn-soft: 44 27 19;
-    --c-neg: 224 112 102;
-    --c-neg-soft: 44 23 21;
+    /* Deep cool charcoal canvas + brighter pink for contrast. */
+    --c-canvas: 20 18 20;
+    --c-surface: 28 25 28;
+    --c-subtle: 36 32 36;
+    --c-ink: 240 237 240;
+    --c-ink-2: 198 191 198;
+    --c-ink-3: 142 135 142;
+    --c-line: 54 48 54;
+    --c-line-2: 72 65 72;
+    --c-brand: 244 114 182;
+    --c-brand-dark: 249 168 212;
+    --c-brand-soft: 58 28 42;
+    --c-brand-ink: 247 168 211;
+    --c-brand-dim: 107 55 79;
+    --c-pos: 74 222 128;
+    --c-pos-soft: 20 40 28;
+    --c-warn: 251 146 60;
+    --c-warn-soft: 42 28 16;
+    --c-neg: 248 113 113;
+    --c-neg-soft: 42 20 20;
 
     --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px -14px rgba(0, 0, 0, 0.6);
     --shadow-pop: 0 20px 48px -14px rgba(0, 0, 0, 0.7);
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -20px rgba(244, 114, 182, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 
-    --scrollbar-track: 38 32 26;
-    --scrollbar-thumb: 74 63 52;
+    --scrollbar-track: 36 32 36;
+    --scrollbar-thumb: 72 65 72;
   }
 
   html {
