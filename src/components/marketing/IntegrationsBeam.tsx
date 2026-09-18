@@ -4,7 +4,18 @@ import React, { forwardRef, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { usePalette } from "@/lib/palette";
+import { usePalette, type Palette } from "@/lib/palette";
+
+// Beam gradient per palette — kept in sync with each theme's --c-brand /
+// --c-brand-dim (light mode) since the SVG gradient stops are plain hex, not
+// CSS custom properties.
+const BEAM_COLORS: Record<Palette, { gradientStartColor: string; gradientStopColor: string }> = {
+  pink: { gradientStartColor: "#DB2777", gradientStopColor: "#F472B6" },
+  blue: { gradientStartColor: "#2563EB", gradientStopColor: "#60A5FA" },
+  "modern-minimal": { gradientStartColor: "#3B82F6", gradientStopColor: "#93C5FD" },
+  "indigo-mono": { gradientStartColor: "#3F5EC2", gradientStopColor: "#9DB2E0" },
+  "claude-azure": { gradientStartColor: "#4288C9", gradientStopColor: "#9CC1DE" },
+};
 
 const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
   ({ className, children }, ref) => {
@@ -34,10 +45,7 @@ export function IntegrationsBeam({ className }: { className?: string }) {
   const div7Ref = useRef<HTMLDivElement>(null);
 
   const { palette } = usePalette();
-  const beamProps =
-    palette === "blue"
-      ? { gradientStartColor: "#2563EB", gradientStopColor: "#60A5FA" }
-      : { gradientStartColor: "#DB2777", gradientStopColor: "#F472B6" };
+  const beamProps = BEAM_COLORS[palette];
 
   return (
     <div

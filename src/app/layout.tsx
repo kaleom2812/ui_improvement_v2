@@ -36,8 +36,8 @@ const fontSerif = Poppins({
 // Applies the persisted theme class to <html> before first paint (no flash).
 // The value is written by src/lib/theme.tsx via usePersistentState (JSON-encoded).
 const themeScript = `(function(){try{var t=localStorage.getItem('phazeai:theme');if(t){t=t.replace(/^"|"$/g,'');if(t==='dark')document.documentElement.classList.add('dark');}}catch(e){}})();`;
-// Same pre-paint pattern for the palette class — see src/lib/palette.tsx.
-const paletteScript = `(function(){try{var p=localStorage.getItem('phazeai:palette');if(p){p=p.replace(/^"|"$/g,'');if(p==='blue')document.documentElement.classList.add('theme-blue');}}catch(e){}})();`;
+// Same pre-paint pattern for the palette attribute — see src/lib/palette.tsx.
+const paletteScript = `(function(){try{var p=localStorage.getItem('phazeai:palette');if(p){p=p.replace(/^"|"$/g,'');if(p&&p!=='pink')document.documentElement.setAttribute('data-palette',p);}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: "GEO Tool — Generative Engine Optimization",

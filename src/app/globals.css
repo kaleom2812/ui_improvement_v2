@@ -8,9 +8,10 @@
    tailwind.config.ts `borderRadius`, flattened to 0 at every step).
 
    Two independent toggles compose on <html>:
-     - `.dark`       (src/lib/theme.tsx)   — light vs dark
-     - `.theme-blue` (src/lib/palette.tsx) — pink palette (default) vs the
-                                              off-white/blue palette below
+     - `.dark`                     (src/lib/theme.tsx)   — light vs dark
+     - `[data-palette="<name>"]`   (src/lib/palette.tsx) — which color theme;
+       absent = pink (default). Options: blue, modern-minimal, indigo-mono,
+       claude-azure — picked from the dropdown under PaletteToggle.
    Both are also applied by pre-paint scripts in src/app/layout.tsx so the
    right combination is on <html> before first paint (no flash).
 
@@ -88,7 +89,7 @@
     --scrollbar-thumb: 72 65 72;
   }
 
-  :root.theme-blue {
+  :root[data-palette="blue"] {
     color-scheme: light;
 
     /* Off-white canvas + a blue accent — the second palette, toggled via
@@ -122,7 +123,7 @@
     --scrollbar-thumb: 203 213 225;
   }
 
-  :root.theme-blue.dark {
+  :root[data-palette="blue"].dark {
     color-scheme: dark;
 
     /* Deep navy canvas + a brighter blue for contrast. */
@@ -153,6 +154,204 @@
 
     --scrollbar-track: 20 29 47;
     --scrollbar-thumb: 51 65 85;
+  }
+
+  :root[data-palette="modern-minimal"] {
+    color-scheme: light;
+
+    /* "Modern Minimal" — clean white canvas, Tailwind blue accent. */
+    --c-canvas: 250 250 251;
+    --c-surface: 255 255 255;
+    --c-subtle: 249 250 251;
+    --c-ink: 17 24 39;
+    --c-ink-2: 75 85 99;
+    --c-ink-3: 156 163 175;
+    --c-line: 229 231 235;
+    --c-line-2: 209 213 219;
+    --c-brand: 59 130 246;
+    --c-brand-dark: 37 99 235;
+    --c-brand-soft: 224 242 254;
+    --c-brand-ink: 29 78 216;
+    --c-brand-dim: 147 197 253;
+    --c-pos: 21 128 61;
+    --c-pos-soft: 220 245 230;
+    --c-warn: 180 83 9;
+    --c-warn-soft: 254 235 213;
+    --c-neg: 239 68 68;
+    --c-neg-soft: 254 226 226;
+
+    --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.06), 0 12px 28px -14px rgba(17, 24, 39, 0.12);
+    --shadow-pop: 0 20px 48px -14px rgba(17, 24, 39, 0.2);
+    --shadow-glass: 0 1px 2px rgba(17, 24, 39, 0.05), 0 24px 48px -20px rgba(59, 130, 246, 0.28),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+
+    --scrollbar-track: 249 250 251;
+    --scrollbar-thumb: 209 213 219;
+  }
+
+  :root[data-palette="modern-minimal"].dark {
+    color-scheme: dark;
+
+    --c-canvas: 17 20 27;
+    --c-surface: 23 27 36;
+    --c-subtle: 30 35 46;
+    --c-ink: 241 245 249;
+    --c-ink-2: 203 213 225;
+    --c-ink-3: 148 163 184;
+    --c-line: 39 46 61;
+    --c-line-2: 51 60 78;
+    --c-brand: 96 165 250;
+    --c-brand-dark: 147 197 253;
+    --c-brand-soft: 23 37 61;
+    --c-brand-ink: 147 197 253;
+    --c-brand-dim: 51 88 143;
+    --c-pos: 74 222 128;
+    --c-pos-soft: 20 40 28;
+    --c-warn: 251 146 60;
+    --c-warn-soft: 42 28 16;
+    --c-neg: 248 113 113;
+    --c-neg-soft: 42 20 20;
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 20px 48px -14px rgba(0, 0, 0, 0.7);
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -20px rgba(96, 165, 250, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+    --scrollbar-track: 30 35 46;
+    --scrollbar-thumb: 51 60 78;
+  }
+
+  :root[data-palette="indigo-mono"] {
+    color-scheme: light;
+
+    /* "Indigo Mono" — near-white canvas, muted indigo accent, neutral zinc greys. */
+    --c-canvas: 250 250 250;
+    --c-surface: 255 255 255;
+    --c-subtle: 245 245 245;
+    --c-ink: 24 24 27;
+    --c-ink-2: 82 82 91;
+    --c-ink-3: 161 161 170;
+    --c-line: 228 228 228;
+    --c-line-2: 212 212 216;
+    --c-brand: 63 94 194;
+    --c-brand-dark: 51 80 158;
+    --c-brand-soft: 219 230 246;
+    --c-brand-ink: 44 70 148;
+    --c-brand-dim: 157 178 224;
+    --c-pos: 21 128 61;
+    --c-pos-soft: 220 245 230;
+    --c-warn: 180 83 9;
+    --c-warn-soft: 254 235 213;
+    --c-neg: 223 34 37;
+    --c-neg-soft: 251 218 218;
+
+    --shadow-card: 0 1px 2px rgba(24, 24, 27, 0.06), 0 12px 28px -14px rgba(24, 24, 27, 0.12);
+    --shadow-pop: 0 20px 48px -14px rgba(24, 24, 27, 0.2);
+    --shadow-glass: 0 1px 2px rgba(24, 24, 27, 0.05), 0 24px 48px -20px rgba(63, 94, 194, 0.28),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+
+    --scrollbar-track: 245 245 245;
+    --scrollbar-thumb: 212 212 216;
+  }
+
+  :root[data-palette="indigo-mono"].dark {
+    color-scheme: dark;
+
+    --c-canvas: 18 18 22;
+    --c-surface: 26 26 31;
+    --c-subtle: 33 33 39;
+    --c-ink: 244 244 245;
+    --c-ink-2: 212 212 216;
+    --c-ink-3: 161 161 170;
+    --c-line: 39 39 46;
+    --c-line-2: 51 51 60;
+    --c-brand: 124 147 222;
+    --c-brand-dark: 157 178 224;
+    --c-brand-soft: 30 38 66;
+    --c-brand-ink: 157 178 224;
+    --c-brand-dim: 58 74 128;
+    --c-pos: 74 222 128;
+    --c-pos-soft: 20 40 28;
+    --c-warn: 251 146 60;
+    --c-warn-soft: 42 28 16;
+    --c-neg: 240 96 95;
+    --c-neg-soft: 45 22 22;
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 20px 48px -14px rgba(0, 0, 0, 0.7);
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -20px rgba(124, 147, 222, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+    --scrollbar-track: 33 33 39;
+    --scrollbar-thumb: 51 51 60;
+  }
+
+  :root[data-palette="claude-azure"] {
+    color-scheme: light;
+
+    /* "Claude Azure" — light blue-grey canvas, azure accent, near-black
+       (monochrome) destructive instead of red. */
+    --c-canvas: 241 241 241;
+    --c-surface: 245 248 250;
+    --c-subtle: 222 230 237;
+    --c-ink: 18 24 28;
+    --c-ink-2: 70 84 92;
+    --c-ink-3: 138 153 163;
+    --c-line: 212 218 219;
+    --c-line-2: 183 193 196;
+    --c-brand: 66 136 201;
+    --c-brand-dark: 50 107 158;
+    --c-brand-soft: 220 227 233;
+    --c-brand-ink: 42 85 126;
+    --c-brand-dim: 156 193 222;
+    --c-pos: 21 128 61;
+    --c-pos-soft: 220 245 230;
+    --c-warn: 180 83 9;
+    --c-warn-soft: 254 235 213;
+    --c-neg: 19 21 20;
+    --c-neg-soft: 231 232 231;
+
+    --shadow-card: 0 1px 2px rgba(18, 24, 28, 0.06), 0 12px 28px -14px rgba(18, 24, 28, 0.12);
+    --shadow-pop: 0 20px 48px -14px rgba(18, 24, 28, 0.2);
+    --shadow-glass: 0 1px 2px rgba(18, 24, 28, 0.05), 0 24px 48px -20px rgba(66, 136, 201, 0.28),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+
+    --scrollbar-track: 222 230 237;
+    --scrollbar-thumb: 183 193 196;
+  }
+
+  :root[data-palette="claude-azure"].dark {
+    color-scheme: dark;
+
+    /* Destructive flips to near-white here — the same "monochrome, not red"
+       idea, kept visible against a dark canvas instead of vanishing. */
+    --c-canvas: 10 13 15;
+    --c-surface: 16 21 24;
+    --c-subtle: 22 28 32;
+    --c-ink: 235 240 243;
+    --c-ink-2: 189 201 208;
+    --c-ink-3: 130 145 153;
+    --c-line: 32 40 45;
+    --c-line-2: 44 54 60;
+    --c-brand: 111 168 218;
+    --c-brand-dark: 156 193 222;
+    --c-brand-soft: 24 38 48;
+    --c-brand-ink: 156 193 222;
+    --c-brand-dim: 45 74 97;
+    --c-pos: 74 222 128;
+    --c-pos-soft: 20 40 28;
+    --c-warn: 251 146 60;
+    --c-warn-soft: 42 28 16;
+    --c-neg: 237 240 242;
+    --c-neg-soft: 34 38 40;
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 20px 48px -14px rgba(0, 0, 0, 0.7);
+    --shadow-glass: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -20px rgba(111, 168, 218, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+    --scrollbar-track: 22 28 32;
+    --scrollbar-thumb: 44 54 60;
   }
 
   html {
